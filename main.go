@@ -21,7 +21,7 @@ func main() {
 
 	file, errr := os.OpenFile("file", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0644)
 	if errr != nil {
-		fmt.Println("Fileda xatolik?")
+		fmt.Println("File ni ochishda xatolik?")
 	}
 
 	_, er := file.WriteString(username)
