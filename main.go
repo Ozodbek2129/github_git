@@ -9,16 +9,28 @@ import (
 func main() {
 	username, err := git.GetUserName()
 	if err != nil {
-		fmt.Println("Error getting username:", err)
+		fmt.Println("Usernamni o'qishda xatolik?")
 		return
 	}
+
+	useremail, ok := git.GetUserEmail()
+	if ok != nil {
+		fmt.Println("Emailni o'qishda xatolik?")
+		return
+	}
+
 	file, errr := os.OpenFile("file", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0644)
 	if errr != nil {
 		fmt.Println("Fileda xatolik?")
 	}
+
 	_, er := file.WriteString(username)
 	if er != nil {
-		fmt.Println("Xatolik?")
+		fmt.Println("Filega username ni yozishda xatolik?")
 	}
-	fmt.Println("Git username is:", username)
+
+	_, okk := file.WriteString(useremail)
+	if okk != nil {
+		fmt.Println("Filega useremailni yozishda xatolik?")
+	}
 }
